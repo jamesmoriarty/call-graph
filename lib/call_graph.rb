@@ -1,5 +1,5 @@
 require 'binding_of_caller'
-require "pry"
+require 'pry'
 
 require 'call_graph/version'
 
