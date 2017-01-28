@@ -1,3 +1,3 @@
 module CallGraph
-  VERSION = '0.0.2.pre'.freeze
+  VERSION = '1.0.0'.freeze
 end
