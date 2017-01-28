@@ -1,0 +1,6 @@
+CallGraphTest (Instance),Foo (Class),x
+CallGraphTest (Instance),Foo (Class),new
+Foo (Class),Bar (Instance),y
+Object (Instance),Foo (Class),x
+Object (Instance),Foo (Class),new
+Foo (Class),Bar (Instance),y
