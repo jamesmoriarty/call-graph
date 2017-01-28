@@ -38,7 +38,7 @@ module CallGraph
         return if caller_class == receiver_class
         return if receiver_class.nil?
         return if caller_class.nil?
-        return if [:require, :set_encoding, :initialize, :attr_reader, :method_added, :private, :inherited, :singleton_method_added, :set_trace_func].include?(id)
+        return if [:require, :set_encoding, :initialize, :new, :attr_reader, :method_added, :private, :inherited, :singleton_method_added, :set_trace_func].include?(id)
 
         # TODO: extract config.
         File.open(tmp_path, 'a') { |fd| fd.write "#{caller_class},#{receiver_class},#{id}\n" }
