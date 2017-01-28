@@ -12,7 +12,7 @@ class CallGraphTest < Minitest::Test
   end
 
   def setup
-    ['tmp', 'dot', 'png'].each do |ext|
+    %w(tmp dot png).each do |ext|
       `rm -f #{CallGraph.filename}.#{ext}`
     end
 
@@ -21,9 +21,7 @@ class CallGraphTest < Minitest::Test
     CallGraph.stop
   end
 
-  def teardown
-
-  end
+  def teardown; end
 
   def test_that_it_has_a_version_number
     refute_nil ::CallGraph::VERSION

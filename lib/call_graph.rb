@@ -11,6 +11,7 @@ module CallGraph
     "#{filename}.tmp"
   end
 
+  # :nocov:
   def self.start
     set_trace_func ->(event, file, _line, id, receiver_binding, classname) {
       # TODO: extract config.
@@ -43,6 +44,7 @@ module CallGraph
       end
     }
   end
+  # :nocov:
 
   def self.stop
     set_trace_func nil
