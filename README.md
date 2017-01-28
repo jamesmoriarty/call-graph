@@ -1,5 +1,11 @@
 # CallGraph
 
+[![Code Climate](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/gpa.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph) [![Test Coverage](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/coverage.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph/coverage)
+
+
+
+[![Example Graph](https://github.com/jamesmoriarty/call-graph/raw/master/call_graph.png)](https://github.com/jamesmoriarty/call-graph/blob/master/call_graph.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -21,16 +27,30 @@ Or install it yourself as:
 Capture the execution you want to graph between `CallGraph.start` and `CallGraph.stop`.
 
 ```ruby
+class Foo
+  def self.x
+    Bar.new.y
+  end
+end
+
+class Bar
+  def y
+    1 + 1
+  end
+end
+
 require 'call_graph'
 
 CallGraph.start
-
 Foo.x
-
 CallGraph.stop
 ```
 
 Print the captured execution with the provided rake tasks.
+
+```ruby
+import 'call_graph/tasks/printer'
+```
 
 ```shell
 $ rake -T
@@ -38,7 +58,6 @@ $ rake -T
 rake call_graph:printer:dot  # write dot file
 rake call_graph:printer:png  # write png file from dot file
 ```
-
 
 ## Development
 
