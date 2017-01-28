@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/gpa.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph) [![Test Coverage](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/coverage.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph/coverage)
 
-
+Capture execution and produce dependency graphs.
 
 [![Example Graph](https://github.com/jamesmoriarty/call-graph/raw/master/call_graph.png)](https://github.com/jamesmoriarty/call-graph/blob/master/call_graph.png)
 
