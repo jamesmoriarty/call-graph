@@ -18,7 +18,9 @@ class Bar
     1 + 1
   end
 end
+```
 
+```ruby
 require 'call_graph'
 
 CallGraph.start
