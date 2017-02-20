@@ -41,18 +41,35 @@ module CallGraph
     end
 
     def default_ignore_paths
-      /#{RUBY_VERSION}|\(eval\)|\(erb\)|bundle\/gems|spec|test/
+      [
+        /#{RUBY_VERSION}/,
+        /\(eval\)/,
+        /bundle\/gems/,
+        /spec/,
+        /text/
+      ]
     end
 
     def default_ignore_methods
-      [:require, :set_encoding, :initialize, :new, :attr_reader, :method_added, :private, :inherited, :singleton_method_added, :set_trace_func]
+      [
+        :require,
+        :set_encoding,
+        :initialize,
+        :new,
+        :attr_reader,
+        :method_added,
+        :private,
+        :inherited,
+        :singleton_method_added,
+        :set_trace_func
+      ]
     end
 
     # :nocov:
     def start
       set_trace_func ->(event, file, _line, id, receiver_binding, classname) {
         # TODO: extract config.
-        return if file[ignore_paths]
+        return if ignore_paths.any? { |path| file[path] }
 
         case event
         when 'call', 'c-call'
