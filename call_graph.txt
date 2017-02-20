@@ -1,0 +1,10 @@
+Object (Instance),Foo (Class),x
+Foo (Class),Bar (Instance),y
+Object (Instance),Foo (Class),x
+Foo (Class),Bar (Instance),y
+Object (Instance),Foo (Class),x
+Foo (Class),Bar (Instance),y
+Object (Instance),Foo (Class),x
+Foo (Class),Bar (Instance),y
+Object (Instance),Foo (Class),x
+Foo (Class),Bar (Instance),y
