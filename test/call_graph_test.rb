@@ -17,15 +17,13 @@ class CallGraphTest < Minitest::Test
       CallGraph.config.tmp_path,
       CallGraph.config.png_path
     ].each do |path|
-      `rm -f #{path}`
+      %x[ rm -f #{path} ]
     end
 
     CallGraph.start
     Foo.x
     CallGraph.stop
   end
-
-  def teardown; end
 
   def test_that_it_has_a_version_number
     refute_nil ::CallGraph::VERSION
