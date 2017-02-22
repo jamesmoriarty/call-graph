@@ -15,7 +15,11 @@ end
 
 class Bar
   def y
-    1 + 1
+    1 + z
+  end
+
+  def z
+    1
   end
 end
 ```
