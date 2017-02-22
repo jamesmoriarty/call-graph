@@ -1,6 +1,6 @@
 module CallGraph
   class Configuration
-    attr_reader :filename, :ignore_paths, :ignore_methods
+    attr_accessor :filename, :ignore_paths, :ignore_methods
 
     def initialize(filename: default_filename, ignore_paths: default_ignore_paths, ignore_methods: default_ignore_methods)
       @filename       = filename

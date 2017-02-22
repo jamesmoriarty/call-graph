@@ -11,7 +11,15 @@ module CallGraph
   end
 
   def self.config
-    Configuration.new
+    @config ||= begin
+      Configuration.new
+    end
+
+    if block_given?
+      yield @config
+    else
+      @config
+    end
   end
 
   def self.stop
