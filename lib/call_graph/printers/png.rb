@@ -14,7 +14,7 @@ module CallGraph
       private
 
       def dot_path
-        config.config.dot_path
+        config.dot_path
       end
 
       def png_path
