@@ -20,6 +20,10 @@ class CallGraphTest < Minitest::Test
       `rm -f #{path}`
     end
 
+    CallGraph.config do |config|
+      config.filename = "examples/call-graph"
+    end
+
     CallGraph.start
     Foo.x
     CallGraph.stop
