@@ -42,10 +42,10 @@ module CallGraph
           .split("\n")
           .uniq
           .map { |line| line.split(',') }
-          .map { |c, r, id| Line.new(c, r, {label: id}) }
+          .map { |c, r, id| Line.new(c, r, label: id) }
       end
 
-      TEMPLATE = <<-EOF
+      TEMPLATE = <<-EOF.freeze
 digraph call_graph {
 <% lines.each do |line| %>
   "<%= line.caller %>" -> "<%= line.receiver %>" [<% line.attributes.each do |(name, value)| %><%= name %>="<%= value %>"<% end %>];

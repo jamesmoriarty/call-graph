@@ -17,7 +17,7 @@ class CallGraphTest < Minitest::Test
       CallGraph.config.tmp_path,
       CallGraph.config.png_path
     ].each do |path|
-      %x[ rm -f #{path} ]
+      `rm -f #{path}`
     end
 
     CallGraph.start

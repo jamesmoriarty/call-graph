@@ -8,7 +8,7 @@ module CallGraph
       end
 
       def print
-        puts %x[ dot -Tpng -o #{png_path} #{dot_path} ]
+        puts `dot -Tpng -o #{png_path} #{dot_path}`
       end
 
       private
