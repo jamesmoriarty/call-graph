@@ -30,7 +30,7 @@ module CallGraph
         /\(eval\)/,
         /bundle\/gems/,
         /spec/,
-        /text/
+        /test/
       ]
     end
 
