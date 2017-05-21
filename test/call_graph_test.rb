@@ -4,18 +4,18 @@ require_relative '../examples/foobar'
 
 class CallGraphTest < Minitest::Test
   def call_graph_tmp
-    IO.read CallGraph.config.tmp_path
+    IO.read CallGraph.config.path(:tmp)
   end
 
   def call_graph_dot
-    IO.read CallGraph.config.dot_path
+    IO.read CallGraph.config.path(:dot)
   end
 
   def setup
     [
-      CallGraph.config.dot_path,
-      CallGraph.config.tmp_path,
-      CallGraph.config.png_path
+      CallGraph.config.path(:dot),
+      CallGraph.config.path(:tmp),
+      CallGraph.config.path(:png)
     ].each do |path|
       `rm -f #{path}`
     end
