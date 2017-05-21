@@ -7,18 +7,8 @@ module CallGraph
         @config = config
       end
 
-      def print
-        puts `dot -Tpng -o #{png_path} #{dot_path}`
-      end
-
-      private
-
-      def dot_path
-        config.dot_path
-      end
-
-      def png_path
-        config.png_path
+      def to_s
+        `dot -Tpng #{config.path(:dot)}`
       end
     end
   end

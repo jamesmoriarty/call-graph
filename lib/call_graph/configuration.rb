@@ -8,16 +8,8 @@ module CallGraph
       @ignore_methods = ignore_methods
     end
 
-    def tmp_path
-      "#{filename}.tmp"
-    end
-
-    def dot_path
-      "#{filename}.dot"
-    end
-
-    def png_path
-      "#{filename}.png"
+    def path(kind)
+      "#{filename}.#{kind}"
     end
 
     def default_filename
@@ -74,7 +66,7 @@ module CallGraph
           return if caller_class == receiver_class
           return if ignore_methods.include?(id)
 
-          File.open(tmp_path, 'a') { |fd| fd.write "#{caller_class},#{receiver_class},#{id}\n" }
+          File.open(path(:tmp), 'a') { |fd| fd.write "#{caller_class},#{receiver_class},#{id}\n" }
         end
       }
     end

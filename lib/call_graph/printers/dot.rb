@@ -7,12 +7,6 @@ module CallGraph
         @config = config
       end
 
-      def print
-        File.open(dot_path, 'w') do |file|
-          file.write to_s
-        end
-      end
-
       def to_s
         ERB.new(TEMPLATE, 0, '>').result(binding)
       end
@@ -29,16 +23,8 @@ module CallGraph
         end
       end
 
-      def dot_path
-        config.dot_path
-      end
-
-      def tmp_path
-        config.tmp_path
-      end
-
       def lines
-        IO.read(tmp_path)
+        IO.read(config.path(:tmp))
           .split("\n")
           .uniq
           .map { |line| line.split(',') }
