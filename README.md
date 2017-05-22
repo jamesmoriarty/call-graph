@@ -46,7 +46,7 @@ rake call_graph:printer:dot  # write dot file
 rake call_graph:printer:png  # write png file from dot file
 ```
 
-[![Example Graph](https://github.com/jamesmoriarty/call-graph/raw/master/call_graph.png)](https://github.com/jamesmoriarty/call-graph/blob/master/call_graph.png)
+[![Example Graph](https://github.com/jamesmoriarty/call-graph/raw/master/examples/call_graph.png)](https://github.com/jamesmoriarty/call-graph/blob/master/examples/call_graph.png)
 
 ## Installation
 
