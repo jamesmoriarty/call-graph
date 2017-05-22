@@ -1,4 +1,4 @@
 digraph call_graph {
-  "CallGraphTest (Instance)" -> "Foo (Class)" [label="x"];
+  "Object (Instance)" -> "Foo (Class)" [label="x"];
   "Foo (Class)" -> "Bar (Instance)" [label="y"];
 }
