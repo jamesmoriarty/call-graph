@@ -18,8 +18,9 @@ class CallGraphTest < Minitest::Test
 
   def test_foobar_tmp
     assert_equal call_graph_tmp, <<-TXT
-Object (Instance),Foo (Class),x
-Foo (Class),Bar (Instance),y
+Object (Instance),A (Class),x
+A (Class),B (Instance),y
+B (Instance),C (Class),z
 TXT
   end
 
@@ -28,8 +29,9 @@ TXT
 
     assert_equal call_graph_dot, <<-TXT
 digraph call_graph {
-  "Object (Instance)" -> "Foo (Class)" [label="x"];
-  "Foo (Class)" -> "Bar (Instance)" [label="y"];
+  "Object (Instance)" -> "A (Class)" [label="x"];
+  "A (Class)" -> "B (Instance)" [label="y"];
+  "B (Instance)" -> "C (Class)" [label="z"];
 }
 TXT
   end

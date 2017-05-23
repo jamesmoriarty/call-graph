@@ -1,2 +1,3 @@
-Object (Instance),Foo (Class),x
-Foo (Class),Bar (Instance),y
+Object (Instance),A (Class),x
+A (Class),B (Instance),y
+B (Instance),C (Class),z

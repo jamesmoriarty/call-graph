@@ -2,19 +2,23 @@
 # require "call_graph"
 # require "pry"
 
-class Foo
+class A
   def self.x
-    Bar.new.y
+    B.new.y
   end
 end
 
-class Bar
+class B
   def y
-    1 + z
+    1 + C.z do
+      1
+    end
   end
+end
 
-  def z
-    1
+class C
+  def self.z
+    yield
   end
 end
 
@@ -31,5 +35,5 @@ end
 end
 
 CallGraph.start
-Foo.x
+A.x
 CallGraph.stop

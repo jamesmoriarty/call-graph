@@ -1,4 +1,5 @@
 digraph call_graph {
-  "Object (Instance)" -> "Foo (Class)" [label="x"];
-  "Foo (Class)" -> "Bar (Instance)" [label="y"];
+  "Object (Instance)" -> "A (Class)" [label="x"];
+  "A (Class)" -> "B (Instance)" [label="y"];
+  "B (Instance)" -> "C (Class)" [label="z"];
 }
