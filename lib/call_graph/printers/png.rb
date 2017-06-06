@@ -8,7 +8,11 @@ module CallGraph
       end
 
       def to_s
-        `dot -Tpng #{config.path(:dot)}`
+        unless `which dot`.empty?
+          `dot -Tpng #{config.path(:dot)}`
+        else
+          raise 'Error: unable to find dot executable in $PATH'
+        end
       end
     end
   end
