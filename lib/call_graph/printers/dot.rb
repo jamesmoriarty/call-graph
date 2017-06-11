@@ -1,3 +1,5 @@
+require 'call_graph/printers/dot/line'
+
 module CallGraph
   module Printers
     class Dot
@@ -12,16 +14,6 @@ module CallGraph
       end
 
       private
-
-      class Line
-        attr_reader :caller, :receiver, :attributes
-
-        def initialize(caller, receiver, attributes = {})
-          @caller     = caller
-          @receiver   = receiver
-          @attributes = attributes
-        end
-      end
 
       def lines
         IO.read(config.path(:tmp))
