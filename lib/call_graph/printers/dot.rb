@@ -10,7 +10,7 @@ module CallGraph
       end
 
       def to_s
-        ERB.new(TEMPLATE, 0, '>').result(binding)
+        ERB.new(TEMPLATE, trim_mode: '>').result(binding)
       end
 
       private

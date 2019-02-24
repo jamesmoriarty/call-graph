@@ -1,7 +1,5 @@
-require 'binding_of_caller'
-
 require 'call_graph/version'
-require 'call_graph/configuration'
+require 'call_graph/instrument'
 require 'call_graph/printers/dot'
 require 'call_graph/printers/png'
 
@@ -11,18 +9,22 @@ module CallGraph
   end
 
   def self.config
-    @config ||= begin
-      Configuration.new
-    end
-
     if block_given?
-      yield @config
+      yield instrument
     else
-      @config
+      instrument
     end
   end
 
   def self.stop
     set_trace_func nil
+  end
+
+  private
+
+  def self.instrument
+    @instrument ||= begin
+      Instrument.new
+    end
   end
 end

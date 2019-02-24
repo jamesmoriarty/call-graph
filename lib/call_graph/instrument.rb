@@ -1,5 +1,7 @@
+require 'binding_of_caller'
+
 module CallGraph
-  class Configuration
+  class Instrument
     attr_accessor :filename, :ignore_paths, :ignore_methods
 
     def initialize(filename: default_filename, ignore_paths: default_ignore_paths, ignore_methods: default_ignore_methods)
