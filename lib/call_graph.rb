@@ -5,7 +5,7 @@ require 'call_graph/printers/png'
 
 module CallGraph
   def self.start
-    config.start
+    instrument.start
   end
 
   def self.config
