@@ -23,7 +23,7 @@ class C
 end
 
 CallGraph.config do |config|
-  config.filename = "examples/call-graph"
+  config.file_path = "examples/call-graph"
 end
 
 [

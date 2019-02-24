@@ -3,20 +3,20 @@ require 'binding_of_caller'
 
 module CallGraph
   class Instrument
-    attr_accessor :filename, :ignore_paths, :ignore_methods, :set
+    attr_accessor :file_path, :ignore_paths, :ignore_methods, :set
 
-    def initialize(filename: default_filename, ignore_paths: default_ignore_paths, ignore_methods: default_ignore_methods)
-      @filename       = filename
+    def initialize(file_path: default_file_path, ignore_paths: default_ignore_paths, ignore_methods: default_ignore_methods)
+      @file_path      = file_path
       @ignore_paths   = ignore_paths
       @ignore_methods = ignore_methods
       @set            = Set.new
     end
 
     def path(kind)
-      "#{filename}.#{kind}"
+      "#{file_path}.#{kind}"
     end
 
-    def default_filename
+    def default_file_path
       'call_graph'
     end
 

@@ -34,10 +34,12 @@ class C
     yield
   end
 end
-```
 
-```ruby
 require 'call_graph'
+
+CallGraph.config do |config|
+  config.file_path = "examples/call-graph"
+end
 
 CallGraph.start
 A.x
@@ -59,6 +61,18 @@ rake call_graph:printer:png  # write png file from dot file
 ```
 
 [![Example Graph](https://github.com/jamesmoriarty/call-graph/raw/master/examples/call-graph.png)](https://github.com/jamesmoriarty/call-graph/blob/master/examples/call-graph.png)
+
+
+## Configuration
+
+```ruby
+CallGraph.config do |config|
+  config.file_path = "examples/call-graph"
+  config.ignore_paths.clear
+  config.ignore_methods << "stop"
+  config.path(:png)
+end
+```
 
 ## Installation
 
