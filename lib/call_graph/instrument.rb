@@ -1,13 +1,15 @@
+require 'set'
 require 'binding_of_caller'
 
 module CallGraph
   class Instrument
-    attr_accessor :filename, :ignore_paths, :ignore_methods
+    attr_accessor :filename, :ignore_paths, :ignore_methods, :set
 
     def initialize(filename: default_filename, ignore_paths: default_ignore_paths, ignore_methods: default_ignore_methods)
       @filename       = filename
       @ignore_paths   = ignore_paths
       @ignore_methods = ignore_methods
+      @set            = Set.new
     end
 
     def path(kind)
@@ -68,9 +70,13 @@ module CallGraph
           return if caller_class == receiver_class
           return if ignore_methods.include?(id)
 
-          File.open(path(:tmp), 'a') { |fd| fd.write "#{caller_class},#{receiver_class},#{id}\n" }
+          set.add("#{caller_class},#{receiver_class},#{id}")
         end
       }
+    end
+
+    def stop
+      File.open(path(:tmp), 'w') { |fd| fd.write set.to_a.compact.join("\n") }
     end
   end
 end

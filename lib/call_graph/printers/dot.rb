@@ -23,12 +23,12 @@ module CallGraph
           .map { |c, r, id| Line.new(c, r, label: id) }
       end
 
-      TEMPLATE = <<-EOF.freeze
-digraph call_graph {
-<% lines.each do |line| %>
-  "<%= line.caller %>" -> "<%= line.receiver %>" [<% line.attributes.each do |(name, value)| %><%= name %>="<%= value %>"<% end %>];
-<% end %>}
-EOF
+      TEMPLATE = <<~EOF.chomp
+        digraph call_graph {
+        <% lines.each do |line| %>
+          "<%= line.caller %>" -> "<%= line.receiver %>" [<% line.attributes.each do |(name, value)| %><%= name %>="<%= value %>"<% end %>];
+        <% end %>}
+      EOF
     end
   end
 end

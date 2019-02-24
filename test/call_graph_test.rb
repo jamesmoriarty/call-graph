@@ -17,23 +17,23 @@ class CallGraphTest < Minitest::Test
   end
 
   def test_foobar_tmp
-    assert_equal call_graph_tmp, <<-TXT
-Object (Instance),A (Class),x
-A (Class),B (Instance),y
-B (Instance),C (Class),z
-TXT
+    assert_equal call_graph_tmp, <<~TXT.chomp
+      Object (Instance),A (Class),x
+      A (Class),B (Instance),y
+      B (Instance),C (Class),z
+    TXT
   end
 
   def test_foobar_dot
     Rake::Task['call_graph:printer:dot'].invoke
 
-    assert_equal call_graph_dot, <<-TXT
-digraph call_graph {
-  "Object (Instance)" -> "A (Class)" [label="x"];
-  "A (Class)" -> "B (Instance)" [label="y"];
-  "B (Instance)" -> "C (Class)" [label="z"];
-}
-TXT
+    assert_equal call_graph_dot, <<~TXT.chomp
+      digraph call_graph {
+        "Object (Instance)" -> "A (Class)" [label="x"];
+        "A (Class)" -> "B (Instance)" [label="y"];
+        "B (Instance)" -> "C (Class)" [label="z"];
+      }
+    TXT
   end
 
   def test_foobar_png
