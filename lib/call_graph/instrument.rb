@@ -46,11 +46,9 @@ module CallGraph
       ]
     end
 
-    # :nocov:
-    # NOTE: - some calls outside the trace proc cause the vm to segvault.
-    #       - i've be unable to extract methods because of the above.
     def start
-      set_trace_func ->(event, file, _line, id, receiver_binding, classname) {
+      set_trace_func ->(event, file, _line, id, receiver_binding, classname) do
+        # :nocov:
         return if ignore_paths.any? { |path| file[path] }
 
         case event
@@ -67,16 +65,22 @@ module CallGraph
           receiver_class = receiver_class + ' ' + receiver_binding.eval("self.class == Class ? '(Class)' : '(Instance)'")
 
           return if classname == CallGraph
+          return if classname == CallGraph::Instrument
           return if caller_class == receiver_class
           return if ignore_methods.include?(id)
 
           set.add("#{caller_class},#{receiver_class},#{id}")
         end
-      }
+        #:nocov:
+      end
     end
 
     def stop
+      set_trace_func nil
+
       File.open(path(:tmp), 'w') { |fd| fd.write set.to_a.compact.join("\n") }
+
+      set.clear
     end
   end
 end

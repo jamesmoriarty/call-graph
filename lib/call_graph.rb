@@ -17,8 +17,6 @@ module CallGraph
   end
 
   def self.stop
-    set_trace_func nil
-
     instrument.stop
   end
 
