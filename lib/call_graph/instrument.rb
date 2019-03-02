@@ -47,8 +47,8 @@ module CallGraph
     end
 
     def start
+      # :nocov:
       set_trace_func ->(event, file, _line, id, receiver_binding, classname) do
-        # :nocov:
         return if ignore_paths.any? { |path| file && file[path] }
 
         case event
@@ -71,8 +71,10 @@ module CallGraph
 
           set.add("#{caller_class},#{receiver_class},#{id}")
         end
-        #:nocov:
+      rescue Exception => e
+        puts e.message
       end
+      #:nocov:
     end
 
     def stop
