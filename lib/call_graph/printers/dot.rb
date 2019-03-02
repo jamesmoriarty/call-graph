@@ -1,3 +1,5 @@
+require 'erb'
+
 require 'call_graph/printers/dot/line'
 
 module CallGraph
