@@ -49,7 +49,7 @@ module CallGraph
     def start
       set_trace_func ->(event, file, _line, id, receiver_binding, classname) do
         # :nocov:
-        return if ignore_paths.any? { |path| file[path] }
+        return if ignore_paths.any? { |path| file && file[path] }
 
         case event
         when 'call', 'c-call'
