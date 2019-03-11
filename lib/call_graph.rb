@@ -4,8 +4,8 @@ require 'call_graph/printers/dot'
 require 'call_graph/printers/png'
 
 module CallGraph
-  def self.start
-    instrument.start
+  def self.trace(&block)
+    instrument.trace(&block)
   end
 
   def self.config
@@ -14,10 +14,6 @@ module CallGraph
     else
       instrument
     end
-  end
-
-  def self.stop
-    instrument.stop
   end
 
   private
