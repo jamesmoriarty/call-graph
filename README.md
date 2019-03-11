@@ -41,9 +41,9 @@ CallGraph.config do |config|
   config.file_path = "examples/call-graph"
 end
 
-CallGraph.start
-A.x
-CallGraph.stop
+CallGraph.trace do
+  A.x
+end
 ```
 
 Print the captured execution with the provided rake tasks.
@@ -68,9 +68,6 @@ rake call_graph:printer:png  # write png file from dot file
 ```ruby
 CallGraph.config do |config|
   config.file_path = "examples/call-graph"
-  config.ignore_paths.clear
-  config.ignore_methods << "stop"
-  config.path(:png)
 end
 ```
 

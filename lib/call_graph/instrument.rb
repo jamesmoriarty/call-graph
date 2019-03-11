@@ -1,14 +1,14 @@
 require 'set'
 require 'binding_of_caller'
 
+INTROSPECT = "(self.class == Class ? self.name : self.class.name) + ' ' + (self.class == Class ? '(Class)' : '(Instance)')"
+
 module CallGraph
   class Instrument
-    attr_accessor :file_path, :ignore_paths, :ignore_methods, :set
+    attr_accessor :file_path, :set
 
-    def initialize(file_path: default_file_path, ignore_paths: default_ignore_paths, ignore_methods: default_ignore_methods)
+    def initialize(file_path: default_file_path)
       @file_path      = file_path
-      @ignore_paths   = ignore_paths
-      @ignore_methods = ignore_methods
       @set            = Set.new
     end
 
@@ -17,72 +17,38 @@ module CallGraph
     end
 
     def default_file_path
-      'call_graph'
+      'call-graph'
     end
 
-    def default_ignore_paths
-      [
-        /#{RUBY_VERSION}/,
-        /\(eval\)/,
-        /bundle\/gems/,
-        /spec/,
-        /test/
-      ]
-    end
-
-    def default_ignore_methods
-      [
-        :require,
-        :set_encoding,
-        :initialize,
-        :new,
-        :attr_reader,
-        :method_added,
-        :private,
-        :inherited,
-        :singleton_method_added,
-        :set_trace_func,
-        :call
-      ]
-    end
-
-    def start
-      # :nocov:
-      set_trace_func ->(event, file, _line, id, receiver_binding, classname) do
-        return if ignore_paths.any? { |path| file && file[path] }
-
-        case event
-        when 'call', 'c-call'
-          caller_binding = receiver_binding.of_caller(2)
-
-          caller_class = caller_binding.eval('self.class == Class ? self.name : self.class.name')
-          caller_class = caller_binding.frame_description unless caller_class
-          caller_class = caller_class + ' ' + caller_binding.eval("self.class == Class ? '(Class)' : '(Instance)'")
-
-
-          receiver_class = receiver_binding.eval('self.class == Class ? self.name : self.class.name')
-          receiver_class = caller_binding.frame_description if receiver_class.nil?
-          receiver_class = receiver_class + ' ' + receiver_binding.eval("self.class == Class ? '(Class)' : '(Instance)'")
-
-          return if classname == CallGraph
-          return if classname == CallGraph::Instrument
-          return if caller_class == receiver_class
-          return if ignore_methods.include?(id)
-
-          set.add("#{caller_class},#{receiver_class},#{id}")
-        end
-      rescue Exception => e
-        puts e.message
-      end
-      #:nocov:
-    end
-
-    def stop
-      set_trace_func nil
+    def trace(&block)
+      trace_point.enable
+      yield
+      trace_point.disable
 
       File.open(path(:tmp), 'w') { |fd| fd.write set.to_a.compact.join("\n") }
 
       set.clear
+    end
+
+    private
+
+    def trace_point
+      @trace_point ||= begin
+        TracePoint.new(:call) do |trace|
+          next if trace.defined_class == self.class
+
+          case trace.event
+          when :call
+            id       = trace.method_id
+            caller   = trace.binding.of_caller(2).eval(INTROSPECT)
+            receiver = trace.binding.eval(INTROSPECT)
+
+            next if caller == receiver
+          
+            set.add("#{caller},#{receiver},#{id}")
+          end
+        end
+      end
     end
   end
 end

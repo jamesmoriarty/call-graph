@@ -34,6 +34,6 @@ end
   `rm -f #{path}`
 end
 
-CallGraph.start
-A.x
-CallGraph.stop
+CallGraph.trace do
+  A.x
+end
