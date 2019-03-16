@@ -1,10 +1,10 @@
 require 'set'
 require 'binding_of_caller'
 
-INTROSPECT = "(self.class == Class ? self.name : self.class.name) + ' ' + (self.class == Class ? '(Class)' : '(Instance)')"
-
 module CallGraph
   class Instrument
+    INTROSPECT = "(self.class == Class ? self.name : self.class.name) + ' ' + (self.class == Class ? '(Class)' : '(Instance)')"
+
     attr_accessor :file_path, :set
 
     def initialize(file_path: default_file_path)
@@ -14,10 +14,6 @@ module CallGraph
 
     def path(kind)
       "#{file_path}.#{kind}"
-    end
-
-    def default_file_path
-      'call-graph'
     end
 
     def trace(&block)
@@ -31,6 +27,10 @@ module CallGraph
     end
 
     private
+
+    def default_file_path
+      'call-graph'
+    end
 
     def trace_point
       @trace_point ||= begin
