@@ -3,7 +3,7 @@ require 'binding_of_caller'
 
 module CallGraph
   class Instrument
-    INTROSPECT = "(self.class == Class ? self.name : self.class.name) + ' ' + (self.class == Class ? '(Class)' : '(Instance)') rescue binding.source_location"
+    INTROSPECT = "(self.class == Class ? self.name : self.class.name) + ' ' + (self.class == Class ? '(Class)' : '(Instance)') rescue binding.source_location.first"
 
     attr_accessor :file_path, :set
 
