@@ -12,7 +12,7 @@
 
 ## Usage
 
-Capture the execution you want to graph between `CallGraph.start` and `CallGraph.stop`.
+Capture the execution you want to graph between `CallGraph.trace { }`.
 
 ```ruby
 class A
