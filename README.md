@@ -34,7 +34,9 @@ class C
     yield
   end
 end
+```
 
+```ruby
 require 'call_graph'
 
 CallGraph.config do |config|
