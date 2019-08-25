@@ -2,6 +2,10 @@
 
 [![Code Climate](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/gpa.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph) [![Test Coverage](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/coverage.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph/coverage) [![Build Status](https://travis-ci.org/jamesmoriarty/call-graph.svg?branch=master)](https://travis-ci.org/jamesmoriarty/call-graph) [![Gem Version](https://badge.fury.io/rb/call_graph.svg)](https://badge.fury.io/rb/call_graph)
 
+## Requirements
+
+- Ruby 2.6+
+
 ## Why
 
 > The Law of Demeter (LoD) or principle of least knowledge is a design guideline for developing software, particularly object-oriented  programs. In its general form, the LoD is a specific case of loose coupling. The guideline was proposed by Ian Holland at Northeastern  University towards the end of 1987, and can be succinctly summarized in each of the following ways:[1]
