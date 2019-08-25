@@ -1,10 +1,14 @@
 # CallGraph
 
-[![Code Climate](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/gpa.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph) [![Test Coverage](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/coverage.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph/coverage) [![Build Status](https://travis-ci.org/jamesmoriarty/call-graph.svg?branch=master)](https://travis-ci.org/jamesmoriarty/call-graph) [![Gem Version](https://badge.fury.io/rb/call_graph.svg)](https://badge.fury.io/rb/call_graph)
+[![Code Climate](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/gpa.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph) [![Test Coverage](https://codeclimate.com/github/jamesmoriarty/call-graph/badges/coverage.svg)](https://codeclimate.com/github/jamesmoriarty/call-graph/coverage) [![Build Status](https://travis-ci.org/jamesmoriarty/call-graph.svg?branch=master)](https://travis-ci.org/jamesmoriarty/call-graph) 
 
-## Requirements
+## Install
 
-- Ruby 2.6+
+[![Gem Version](https://badge.fury.io/rb/call_graph.svg)](https://badge.fury.io/rb/call_graph)
+
+```
+gem install call_graph
+```
 
 ## Why
 
@@ -75,26 +79,6 @@ rake call_graph:printer:png  # write png file from dot file
 CallGraph.config do |config|
   config.file_path = "examples/call-graph"
 end
-```
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'call_graph'
-```
-
-And then execute:
-
-```
-$ bundle
-```
-
-Or install it yourself as:
-
-```
-$ gem install call_graph
 ```
 
 ## Development
