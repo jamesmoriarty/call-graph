@@ -1,14 +1,6 @@
 # CallGraph
 
-[![Build Status](https://travis-ci.org/jamesmoriarty/call-graph.svg?branch=master)](https://travis-ci.org/jamesmoriarty/call-graph) 
-
-## Install
-
-[![Gem Version](https://badge.fury.io/rb/call_graph.svg)](https://badge.fury.io/rb/call_graph)
-
-```
-gem install call_graph
-```
+[![Build Status](https://travis-ci.org/jamesmoriarty/call-graph.svg?branch=master)](https://travis-ci.org/jamesmoriarty/call-graph)
 
 ## Why
 
@@ -17,6 +9,14 @@ gem install call_graph
 > - Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.
 > - Each unit should only talk to its friends; don't talk to strangers.
 > - Only talk to your immediate friends.
+
+## Install
+
+[![Gem Version](https://badge.fury.io/rb/call_graph.svg)](https://badge.fury.io/rb/call_graph)
+
+```
+gem install call_graph
+```
 
 ## Usage
 
